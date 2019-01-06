@@ -44,11 +44,17 @@ public class Sample {
 
             }
             Arrays.sort(temp);
-            if (!c.contains(temp)){
-                c.add(temp);
-                i++;
+            boolean flag = false;
+            for (int j = 0; j < c.size(); j++) {
+                if (Arrays.equals(c.get(j), temp)){
+                    flag = true;
+                    break;
+                }
             }
-
+            if (!flag){
+                i++;
+                c.add(temp);
+            }
         }
     }
 
@@ -65,17 +71,10 @@ public class Sample {
 
     public static void main(String[] args) throws IOException {
 
-        System.out.println("Entrer n p t：");
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        String input = reader.readLine();
-        String[] numbers = input.split(" ");
-        int n = Integer.parseInt(numbers[0]);
-        int p = Integer.parseInt(numbers[1]);
-        int t = Integer.parseInt(numbers[2]);
-        reader.close();
-        System.out.println("OK");
+        int n = Integer.parseInt(args[0]);
+        int p = Integer.parseInt(args[1]);
+        int t = Integer.parseInt(args[2]);
         Sample ex = new Sample(n, p, t);
 
         ex.generate();

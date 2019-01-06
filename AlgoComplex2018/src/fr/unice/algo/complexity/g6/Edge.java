@@ -1,6 +1,6 @@
 package fr.unice.algo.complexity.g6;
 
-public class Edge {
+public class Edge implements Comparable<Edge>{
     int v1;
     int v2;
     int weight;
@@ -8,7 +8,7 @@ public class Edge {
     public Edge(int v1, int v2, int weight){
         this.v1 = v1;
         this.v2 = v2;
-        this.weight = 0;
+        this.weight = weight;
     }
 
     public boolean equals(Object object){
@@ -25,10 +25,23 @@ public class Edge {
         return false;
     }
 
-
+    public int other(int vertex) {
+        if(vertex == v1){
+            return v2;
+        }
+        else if(vertex == v2) {
+            return v1;
+        }
+        return -1;
+    }
 
     @Override
     public String toString() {
         return v1+"-"+v2+"\n";
+    }
+
+    @Override
+    public int compareTo(Edge e) {
+        return this.weight-e.weight;
     }
 }
